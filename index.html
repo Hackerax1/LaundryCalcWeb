@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta name = "viewport" charset="UTF-8" content = "width=device-width, initial-scale=1"/>
+
+<head>
+    <title>Laundry Calculator</title>
+    <script src="Launcry.js"></script>
+    <link rel="stylesheet" type="text/css" href="LaundryCalc.css">
+
+</head>
+
+<body>
+    <h1>Laundry Calculator</h1>
+    <form>
+        <label>Wash Cycle Duration:</label>
+        <input type="number" name="washDuration" title="washDuration"><br><br>
+
+        <label>Dry Cycle Duration:</label>
+        <input type="number" name="dryDuration" title="dryDuration"><br><br>
+
+        <label>Number of Washers:</label>
+        <input type="number" name="numWashers" title="numWashers"><br><br>
+
+        <label>Number of Dryers:</label>
+        <input type="number" name="numDryers" title="numDryers"><br><br>
+
+        <label>Number of Loads:</label>
+        <input type="number" name="numLoads" title="numLoads"><br><br>
+
+        <label>Start Time:</label>
+        <input type="time" name="startTime" title="startTime"><br><br>
+
+        <input type="submit" value="Calculate" id="submitBtn">
+    </form>
+
+    <p>Total Time: <span id="totalTime"></span></p>
+    <p>Completion Time: <span id="completionTime"></span></p>
+    <p>Countdown Timer: <span id="countdownTimer"></span></p>
+    
+
+
+    <audio id="audio">
+        <source src="alarm.wav" type="audio/wav">
+    </audio>
+</body>
+</html>
