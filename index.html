@@ -3,10 +3,10 @@
     <meta charset="utf-8">
     <title>Laundry Calculator</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="script.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="script.js"></script>
 </head>
 <body>
     <div class="container-sm">
@@ -23,19 +23,18 @@
                 <input type="number" class="form-control" id="dryerNumber" name="dryerNumber">
                 <label for="loadsNumber">Number of Loads:</label>
                 <input type="number" class="form-control" id="loadsNumber" name="loadsNumber">
-                <!-- Insert start time -->
                 <label for="startTime">Start Time:</label>
                 <input type="time" class="form-control" id="startTime" name="startTime">
             </div>
-            <button class="btn btn-primary" id="calculateBtn">Calculate</button>
+            <button type="button" class="btn btn-primary" id="calculateBtn">Calculate</button>
         </form>
 
         <div class="mt-4">
             <p>Total Time: <span id="totalTime"></span></p>
             <p>Completion Time: <span id="completionTime"></span></p>
-            <button class="btn btn-primary" id="timerBtn">Start Timer</button>
+            <button type="button" class="btn btn-primary" id="timerBtn">Start Timer</button>
             <p>Time Remaining: <span id="timeRemaining"></span></p>
-            <button class="btn btn-primary" id="resetBtn">Reset</button>
+            <button type="button" class="btn btn-primary" id="resetBtn">Reset</button>
         </div>
     </div>
 </body>
