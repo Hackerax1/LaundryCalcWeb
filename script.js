@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function () {var timer;
 var completionTime;
 var elementIDs = ["washDuration", "dryDuration", "washerNumber", "dryerNumber", "loadsNumber", "startTime"];
