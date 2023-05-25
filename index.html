@@ -1,46 +1,46 @@
-<!DOCTYPE html>
 <html lang="en">
-<meta name = "viewport" charset="UTF-8" content = "width=device-width, initial-scale=1"/>
-
 <head>
+    <meta charset="utf-8">
     <title>Laundry Calculator</title>
-    <script src="Launcry.js"></script>
-    <link rel="stylesheet" type="text/css" href="LaundryCalc.css">
-
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/public/scripts/scripttest.js"></script>
 </head>
-
 <body>
-    <h1>Laundry Calculator</h1>
-    <form>
-        <label>Wash Cycle Duration:</label>
-        <input type="number" name="washDuration" title="washDuration"><br><br>
+    <div class="container-sm">
+        <h1>Laundry Calculator</h1>
+        <form>
+            <div class="form-group">
+                <label for="washDuration">Wash Cycle Duration:</label>
+                <input type="number" class="form-control" id="washDuration" name="washDuration">
+                <label for="dryDuration">Dry Cycle Duration:</label>
+                <input type="number" class="form-control" id="dryDuration" name="dryDuration">
+                <label for="washerNumber">Number of Washers:</label>
+                <input type="number" class="form-control" id="washerNumber" name="washerNumber">
+                <label for="dryerNumber">Number of Dryers:</label>
+                <input type="number" class="form-control" id="dryerNumber" name="dryerNumber">
+                <label for="loadsNumber">Number of Loads:</label>
+                <input type="number" class="form-control" id="loadsNumber" name="loadsNumber">
+                <!-- Insert start time -->
+                <label for="startTime">Start Time:</label>
+                <input type="time" class="form-control" id="startTime" name="startTime">
+            </div>
 
-        <label>Dry Cycle Duration:</label>
-        <input type="number" name="dryDuration" title="dryDuration"><br><br>
+            <!-- Add similar form groups for other input fields -->
 
-        <label>Number of Washers:</label>
-        <input type="number" name="numWashers" title="numWashers"><br><br>
+            <button class="btn btn-primary" id="calculateBtn">Calculate</button>
+        </form>
 
-        <label>Number of Dryers:</label>
-        <input type="number" name="numDryers" title="numDryers"><br><br>
-
-        <label>Number of Loads:</label>
-        <input type="number" name="numLoads" title="numLoads"><br><br>
-
-        <label>Start Time:</label>
-        <input type="time" name="startTime" title="startTime"><br><br>
-
-        <input type="submit" value="Calculate" id="submitBtn">
-    </form>
-
-    <p>Total Time: <span id="totalTime"></span></p>
-    <p>Completion Time: <span id="completionTime"></span></p>
-    <p>Countdown Timer: <span id="countdownTimer"></span></p>
-    
-
-
-    <audio id="audio">
-        <source src="alarm.wav" type="audio/wav">
-    </audio>
+        <div class="mt-4">
+            <p>Total Time: <span id="totalTime"></span></p>
+            <p>Completion Time: <span id="completionTime"></span></p>
+            <button class="btn btn-primary" id="timerBtn">Start Timer</button>
+            <p>Time Remaining: <span id="timeRemaining"></span></p>
+            <button class="btn btn-primary" id="resetBtn">Reset</button>
+        </div>
+    </div>
 </body>
 </html>
