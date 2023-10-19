@@ -1,23 +1,24 @@
-document.addEventListener('DOMContentLoaded', function () {var timer;
-var completionTime;
-var elementIDs = ["washDuration", "dryDuration", "washerNumber", "dryerNumber", "loadsNumber", "startTime"];
-var textElementIDs = ["totalTime", "completionTime", "timeRemaining"];
+document.addEventListener('DOMContentLoaded', function () {
+    var timer;
+    var completionTime;
+    var elementIDs = ["washDuration", "dryDuration", "washerNumber", "dryerNumber", "loadsNumber", "startTime"];
+    var textElementIDs = ["totalTime", "completionTime", "timeRemaining"];
 
-function getElementValue(id) {
-    var element = document.getElementById(id);
-    return element ? element.value : "";
-}
+    function getElementValue(id) {
+        var element = document.getElementById(id);
+        return element ? element.value : "";
+    }
 
-function setElementValue(id, value) {
-    var element = document.getElementById(id);
-    if (element) {
-        if (id === "completionTime" || id === "timeRemaining" || id === "totalTime") {
-            element.textContent = value;
-        } else {
-            element.value = value;
+    function setElementValue(id, value) {
+        var element = document.getElementById(id);
+        if (element) {
+            if (id === "completionTime" || id === "timeRemaining" || id === "totalTime") {
+                element.textContent = value;
+            } else {
+                element.value = value;
+            }
         }
     }
-}
 
     document.getElementById('calculateBtn').addEventListener('click', function (event) {
         event.preventDefault();
@@ -30,15 +31,21 @@ function setElementValue(id, value) {
         } else {
             var variables = {};
             elementIDs.forEach(function (id) {
-                variables[id] = id === "startTime" ? getElementValue(id) : parseInt(getElementValue(
-                    id));
+                variables[id] = id === "startTime" ? getElementValue(id) : parseInt(getElementValue(id));
                 console.log(id + ": " + variables[id]);
             });
 
             // Perform calculations
             var machines = Math.min(variables.washerNumber, variables.dryerNumber);
             var numCycles = Math.ceil(variables.loadsNumber / machines);
-            var totalTime = (variables.washDuration + variables.dryDuration) * numCycles;
+            // check if washDuration is less than dryDuration
+            if (variables.washDuration < variables.dryDuration) {
+                // if washDuration is less than dryDuration
+                var totalTime = (variables.washDuration + variables.dryDuration) + ((variables.dryDuration) * (numCycles - 1));
+            }
+            else {
+                var totalTime = (variables.washDuration + variables.dryDuration) * numCycles;
+            }
             // Convert total time to hours and minutes
             var totalHours = Math.floor(totalTime / 60);
             var totalMinutes = totalTime % 60;
@@ -60,7 +67,7 @@ function setElementValue(id, value) {
             // Update the result elements
             setElementValue("totalTime", formattedTotalTime);
             setElementValue("completionTime", completionTimeFormatted);
-            
+
         }
     });
 
