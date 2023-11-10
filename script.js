@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (numCycles === 1) {
                 //hide wash button
                 document.getElementById('washBtn').style.display = 'none';
+                document.getElementById('nextLoadLabel').style.display = 'none';
             }
             // check if washDuration is less than dryDuration
             washTime = variables.washDuration
@@ -80,6 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Format the completion time
             var completionTimeFormatted = completionHours + ":" + completionMinutes + " " + amPm;
             // Update the result elements
+            setElementValue("totalTime", formattedTotalTime);
             setElementValue("washTimer", washTimeFormatted);
             setElementValue("dryTimer", dryTimeFormatted);
             setElementValue("timeRemaining", formattedTotalTime);
@@ -87,6 +89,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
         }
     });
+
+    function bigTimer() {
+        var now = new Date().getTime();
+        var distance = completionTime - now;
+
+        // When timer hits zero, play sound
+        if (distance < 0) {
+            clearInterval(timer);
+            setElementValue("timeRemaining", "EXPIRED");
+            var audio = new Audio('alarm.wav');
+            audio.play();
+        } else {
+            // Calculate remaining time
+            var hours = Math.floor(distance / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Format remaining time as HH:MM:SS
+            var timeFormatted = hours.toString().padStart(2, '0') + ":" +
+                minutes.toString().padStart(2, '0') + ":" +
+                seconds.toString().padStart(2, '0');
+
+            // Update the result element with remaining time
+            setElementValue("timeRemaining", timeFormatted);
+        }
+    }
 
     document.getElementById('timerBtn').addEventListener('click', function () {
         // Timer function
@@ -118,35 +146,6 @@ document.addEventListener('DOMContentLoaded', function () {
         // Disable the timer button
         document.getElementById('timerBtn').disabled = true;
     });
-
-    function bigTimer() {
-        var now = new Date().getTime();
-        var distance = completionTime - now;
-
-        // When timer hits zero, play sound
-        if (distance < 0) {
-            clearInterval(timer);
-            setElementValue("timeRemaining", "EXPIRED");
-            var audio = new Audio('alarm.wav');
-            audio.play();
-        } else {
-            // Calculate remaining time
-            var hours = Math.floor(distance / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Format remaining time as HH:MM:SS
-            var timeFormatted = hours.toString().padStart(2, '0') + ":" +
-                minutes.toString().padStart(2, '0') + ":" +
-                seconds.toString().padStart(2, '0');
-
-            // Update the result element with remaining time
-            setElementValue("washTimer", timeFormatted);
-            setElementValue("timeRemaining", timeFormatted);
-        }
-    }
-
-
 
 
     document.getElementById('dryerBtn').addEventListener('click', function () {
