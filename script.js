@@ -52,8 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
             dryTime = variables.dryDuration
             var washTimeFormatted = washTime.toString().padStart(2, '0') + ":" + "00";
             var dryTimeFormatted = dryTime.toString().padStart(2, '0') + ":" + "00";
-            setElementValue("washTimer", washTimeFormatted);
-            setElementValue("dryTimer", dryTimeFormatted);
+    
 
             if (variables.washDuration < variables.dryDuration) {
                 // if washDuration is less than dryDuration
